@@ -84,14 +84,14 @@ Use your camera to scan and identify individuals in real-time.
 ### Dark Mode
 ![Dark Mode](Screenshots/homepage.jpg)
 
-### Light Mode
-![Light Mode](Screenshots/)
+### add new criminal
+![add new criminal](Screenshots/add new criminal.jpg)
 
 ### Criminal Profiles
-![Profiles](Website_Screenshots/profiles.png)
+![Profiles](Screenshots/criminal profiles.jpg)
 
 ### Criminal Details
-![Details](Website_Screenshots/details.png)
+![Details](Screenshots/criminal identified.jpg)
 
 ## Contributing
 
