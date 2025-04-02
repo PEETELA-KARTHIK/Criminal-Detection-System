@@ -85,13 +85,13 @@ Use your camera to scan and identify individuals in real-time.
 ![Dark Mode](Screenshots/homepage.jpg)
 
 ### add new criminal
-![add new criminal](Screenshots/add new criminal.jpg)
+![add new criminal](Screenshots/add_new_criminal.jpg)
 
 ### Criminal Profiles
-![Profiles](Screenshots/criminal profiles.jpg)
+![Profiles](Screenshots/criminal_profiles.jpg)
 
 ### Criminal Details
-![Details](Screenshots/criminal identified.jpg)
+![Details](Screenshots/criminal_identified.jpg)
 
 ## Contributing
 
