@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HOLMES - Criminal Detection Platform Project Report</title>
+    <style>
+        :root {
+            --primary-color: #4f46e5;
+            --secondary-color: #6366f1;
+            --dark-bg: #1e1b4b;
+            --light-bg: #f9fafb;
+            --dark-text: #1f2937;
+            --light-text: #f9fafb;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: var(--light-bg);
+            color: var(--dark-text);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+            box-shadow: var(--shadow);
+        }
+        
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        nav {
+            background-color: white;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        nav ul {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            margin: 0;
+            padding: 0;
+        }
+        
+        nav li {
+            padding: 0;
+        }
+        
+        nav a {
+            display: block;
+            padding: 1rem;
+            color: var(--dark-text);
+            text-decoration: none;
+            font-weight: 500;
+            transition: background-color 0.3s;
+        }
+        
+        nav a:hover {
+            background-color: rgba(99, 102, 241, 0.1);
+            color: var(--primary-color);
+        }
+        
+        main {
+            padding: 2rem 0;
+        }
+        
+        section {
+            margin-bottom: 3rem;
+            background-color: white;
+            padding: 2rem;
+            border-radius: 0.5rem;
+            box-shadow: var(--shadow);
+        }
+        
+        h2 {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 0.5rem;
+            margin-top: 0;
+        }
+        
+        h3 {
+            color: var(--dark-text);
+            margin-top: 1.5rem;
+        }
+        
+        .info-box {
+            background-color: rgba(99, 102, 241, 0.1);
+            border-left: 4px solid var(--primary-color);
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 0 0.25rem 0.25rem 0;
+        }
+        
+        .diagram {
+            background-color: #f8fafc;
+            border: 1px solid #e2e8f0;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0.5rem;
+            text-align: center;
+        }
+        
+        .diagram h4 {
+            margin-top: 0;
+            color: var(--dark-text);
+        }
+        
+        .diagram-content {
+            padding: 1rem;
+            border: 1px dashed #cbd5e1;
+            margin: 1rem 0;
+            background-color: white;
+            font-family: monospace;
+            white-space: pre;
+            overflow: auto;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+        }
+        
+        table, th, td {
+            border: 1px solid #e2e8f0;
+        }
+        
+        th, td {
+            padding: 0.75rem;
+            text-align: left;
+        }
+        
+        th {
+            background-color: #f8fafc;
+            font-weight: 600;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #f8fafc;
+        }
+        
+        .screenshot {
+            display: block;
+            max-width: 100%;
+            height: auto;
+            margin: 1.5rem auto;
+            border: 1px solid #e2e8f0;
+            border-radius: 0.5rem;
+            box-shadow: var(--shadow);
+        }
+        
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+        
+        .tech-item {
+            background-color: #f8fafc;
+            padding: 0.75rem 1rem;
+            border-radius: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 500;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        
+        .tech-item span {
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 9999px;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.875rem;
+        }
+        
+        footer {
+            background-color: var(--dark-bg);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+        
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+            }
+            
+            .container {
+                padding: 10px;
+            }
+            
+            section {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>HOLMES - Criminal Detection Platform</h1>
+            <p>Facial Recognition-Based Criminal Identification System</p>
+        </div>
+    </header>
+    
+    <nav>
+        <div class="container">
+            <ul>
+                <li><a href="#executive-summary">Executive Summary</a></li>
+                <li><a href="#introduction">Introduction</a></li>
+                <li><a href="#technology-stack">Technology Stack</a></li>
+                <li><a href="#architecture">Architecture</a></li>
+                <li><a href="#algorithms">Algorithms</a></li>
+                <li><a href="#ui-design">UI Design</a></li>
+                <li><a href="#usp">USPs</a></li>
+                <li><a href="#scope">Scope</a></li>
+                <li><a href="#references">References</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <main class="container">
+        <section id="executive-summary">
+            <h2>1. Executive Summary</h2>
+            <p>HOLMES is an advanced facial recognition system designed to identify criminals by matching their facial features against a database of known individuals. The platform uses state-of-the-art computer vision algorithms to enable real-time detection and identification, providing law enforcement agencies with a powerful tool for enhancing public safety.</p>
+            
+            <div class="info-box">
+                <p><strong>Key Features:</strong></p>
+                <ul>
+                    <li>Real-time facial recognition and criminal identification</li>
+                    <li>Comprehensive criminal profile management system</li>
+                    <li>Modern, responsive UI with dark/light mode support</li>
+                    <li>Detection history tracking and management</li>
+                    <li>User-friendly interfaces for all core functions</li>
+                </ul>
+            </div>
+        </section>
+        
+        <section id="introduction">
+            <h2>2. Introduction</h2>
+            <h3>2.1 Problem Statement</h3>
+            <p>Traditional methods of criminal identification rely heavily on manual processes, making them time-consuming and prone to human error. Law enforcement agencies need faster, more accurate ways to identify individuals with criminal records, especially in high-traffic areas or during large public events.</p>
+            
+            <h3>2.2 Solution Overview</h3>
+            <p>HOLMES addresses these challenges by leveraging facial recognition technology to instantly identify known criminals from camera feeds. The system maintains a database of criminal profiles with facial images and detailed information, allowing for rapid matching and retrieval of relevant data.</p>
+            
+            <h3>2.3 Target Users</h3>
+            <ul>
+                <li>Law enforcement officers</li>
+                <li>Security personnel</li>
+                <li>Border control agents</li>
+                <li>Prison management staff</li>
+                <li>Counter-terrorism units</li>
+            </ul>
+        </section>
+        
+        <section id="technology-stack">
+            <h2>3. Technology Stack</h2>
+            <div class="tech-stack">
+                <div class="tech-item"><span>1</span> Python 3.9+</div>
+                <div class="tech-item"><span>2</span> Django 4.0.4</div>
+                <div class="tech-item"><span>3</span> SQLite</div>
+                <div class="tech-item"><span>4</span> dlib 19.22.1</div>
+                <div class="tech-item"><span>5</span> face_recognition API</div>
+                <div class="tech-item"><span>6</span> OpenCV 4.5.5</div>
+                <div class="tech-item"><span>7</span> HTML5/CSS3</div>
+                <div class="tech-item"><span>8</span> Tailwind CSS</div>
+                <div class="tech-item"><span>9</span> JavaScript/jQuery</div>
+            </div>
+            
+            <h3>3.1 Backend Infrastructure</h3>
+            <p>The backend of HOLMES is built on Django, a high-level Python web framework that encourages rapid development and clean, pragmatic design. SQLite is used as the database system due to its simplicity and effectiveness for the scale of this application.</p>
+            
+            <h3>3.2 Face Recognition Technology</h3>
+            <p>The core facial recognition capabilities are powered by a combination of dlib, the face_recognition API, and OpenCV. This technology stack enables:</p>
+            <ul>
+                <li>Face detection in images and video streams</li>
+                <li>Feature extraction and face encoding</li>
+                <li>Face comparison and matching</li>
+                <li>Real-time processing of video frames</li>
+            </ul>
+            
+            <h3>3.3 Frontend Technologies</h3>
+            <p>The user interface is developed using HTML5/CSS3 with Tailwind CSS for responsive design and styling. JavaScript and jQuery are used for client-side functionality, including AJAX requests for real-time updates without page reloads.</p>
+        </section>
+        
+        <section id="architecture">
+            <h2>4. System Architecture</h2>
+            <h3>4.1 High-Level Architecture</h3>
+            <div class="diagram">
+                <h4>System Components Diagram</h4>
+                <div class="diagram-content">
++---------------------+     +---------------------+     +---------------------+
+|                     |     |                     |     |                     |
+|  Client Web Browser |<--->|  Django Web Server  |<--->|  SQLite Database    |
+|                     |     |                     |     |                     |
++---------------------+     +---------------------+     +---------------------+
+                                     ^
+                                     |
+                                     v
+                            +---------------------+
+                            |                     |
+                            | Face Recognition    |
+                            | Processing Engine   |
+                            |                     |
+                            +---------------------+
+                                     ^
+                                     |
+                                     v
+                            +---------------------+
+                            |                     |
+                            |   Camera Input      |
+                            |                     |
+                            +---------------------+
+                </div>
+            </div>
+            
+            <h3>4.2 Class Diagram</h3>
+            <div class="diagram">
+                <h4>Class Diagram</h4>
+                <div class="diagram-content">
++-------------------+        +-------------------+
+|      Profile      |        |     LastFace      |
++-------------------+        +-------------------+
+| first_name: str   |        | last_face: str    |
+| last_name: str    |        | date: DateTime    |
+| age: int          |        +-------------------+
+| identi: str       |        | __str__()         |
+| nationality: str  |        +-------------------+
+| crime: str        |
+| gender: str       |
+| present: bool     |
+| image: ImageField |
++-------------------+
+| __str__()         |
++-------------------+
+          ^
+          |
+          |
++-------------------+
+| django.db.Model   |
++-------------------+
+                </div>
+            </div>
+            
+            <h3>4.3 Database Schema</h3>
+            <table>
+                <tr>
+                    <th colspan="3">Profile Table</th>
+                </tr>
+                <tr>
+                    <th>Field</th>
+                    <th>Type</th>
+                    <th>Description</th>
+                </tr>
+                <tr>
+                    <td>id</td>
+                    <td>Integer</td>
+                    <td>Primary key</td>
+                </tr>
+                <tr>
+                    <td>first_name</td>
+                    <td>CharField(70)</td>
+                    <td>Criminal's first name</td>
+                </tr>
+                <tr>
+                    <td>last_name</td>
+                    <td>CharField(70)</td>
+                    <td>Criminal's last name</td>
+                </tr>
+                <tr>
+                    <td>age</td>
+                    <td>IntegerField</td>
+                    <td>Criminal's age</td>
+                </tr>
+                <tr>
+                    <td>identi</td>
+                    <td>CharField(200)</td>
+                    <td>Identification mark</td>
+                </tr>
+                <tr>
+                    <td>nationality</td>
+                    <td>CharField(200)</td>
+                    <td>Nationality</td>
+                </tr>
+                <tr>
+                    <td>crime</td>
+                    <td>CharField(200)</td>
+                    <td>Criminal history</td>
+                </tr>
+                <tr>
+                    <td>gender</td>
+                    <td>CharField(200)</td>
+                    <td>Gender</td>
+                </tr>
+                <tr>
+                    <td>present</td>
+                    <td>BooleanField</td>
+                    <td>Presence status</td>
+                </tr>
+                <tr>
+                    <td>image</td>
+                    <td>ImageField</td>
+                    <td>Criminal's photo</td>
+                </tr>
+            </table>
+            
+            <table>
+                <tr>
+                    <th colspan="3">LastFace Table</th>
+                </tr>
+                <tr>
+                    <th>Field</th>
+                    <th>Type</th>
+                    <th>Description</th>
+                </tr>
+                <tr>
+                    <td>id</td>
+                    <td>Integer</td>
+                    <td>Primary key</td>
+                </tr>
+                <tr>
+                    <td>last_face</td>
+                    <td>CharField(200)</td>
+                    <td>Reference to detected criminal</td>
+                </tr>
+                <tr>
+                    <td>date</td>
+                    <td>DateTimeField</td>
+                    <td>Time of detection</td>
+                </tr>
+            </table>
+        </section>
+        
+        <section id="algorithms">
+            <h2>5. Algorithms & Core Functionality</h2>
+            <h3>5.1 Facial Recognition Pipeline</h3>
+            <p>HOLMES implements a sophisticated facial recognition pipeline:</p>
+            <ol>
+                <li><strong>Face Detection</strong>: Using dlib's HOG-based face detector to locate faces in the input image or video frame</li>
+                <li><strong>Face Landmark Detection</strong>: Identifying 68 specific points on a face that help with alignment and feature extraction</li>
+                <li><strong>Face Encoding</strong>: Converting the facial features into a 128-dimensional vector that uniquely represents the face</li>
+                <li><strong>Face Comparison</strong>: Calculating the Euclidean distance between face encodings to determine similarity</li>
+                <li><strong>Match Decision</strong>: Determining if a match exists based on a threshold value for similarity</li>
+            </ol>
+            
+            <div class="info-box">
+                <p><strong>Key Algorithm: Face Recognition</strong></p>
+                <p>The face recognition algorithm used in HOLMES is based on a deep convolutional neural network model that has been trained on a dataset of millions of faces. The model achieves 99.38% accuracy on the Labeled Faces in the Wild benchmark.</p>
+            </div>
+            
+            <h3>5.2 Real-time Processing</h3>
+            <p>The real-time processing pipeline for video streams includes:</p>
+            <ul>
+                <li>Frame capture from webcam using OpenCV</li>
+                <li>Frame resizing to improve performance (0.25x scale)</li>
+                <li>Conversion from BGR to RGB color space</li>
+                <li>Face detection and encoding</li>
+                <li>Comparison with known face encodings</li>
+                <li>Visual feedback with bounding boxes and names</li>
+                <li>Database updating for matched faces</li>
+            </ul>
+        </section>
+        
+        <section id="use-cases">
+            <h2>6. Use Cases & Scenarios</h2>
+            <h3>6.1 Primary Use Cases</h3>
+            <div class="diagram">
+                <h4>Use Case Diagram</h4>
+                <div class="diagram-content">
+                   +------------------------+
+                   |      HOLMES System     |
+                   +------------------------+
+                   |                        |
+ +--------+        | +------------------+   |        +-----------------+
+ |        |        | |                  |   |        |                 |
+ |  Law   |--------|-| Manage Criminal  |   |        | System          |
+ | Officer|        | |    Profiles      |   |        | Administrator   |
+ |        |        | |                  |   |        |                 |
+ +--------+        | +------------------+   |        +-----------------+
+                   |                        |              |
+                   | +------------------+   |              |
+ +--------+        | |                  |   |              |
+ |        |        | | Detect Criminal  |---|--------------+
+ |Security|--------|-|                  |   |
+ |Personnel|       | |                  |   |
+ |        |        | +------------------+   |
+ +--------+        |                        |
+                   | +------------------+   |
+                   | |                  |   |
+                   | | View Detection   |---|--------------+
+                   | |    History       |   |
+                   | |                  |   |
+                   | +------------------+   |
+                   |                        |
+                   +------------------------+
+                </div>
+            </div>
+            
+            <h3>6.2 Key Use Case Scenarios</h3>
+            <div class="info-box">
+                <h4>Use Case: Criminal Detection</h4>
+                <p><strong>Actor:</strong> Security Personnel</p>
+                <p><strong>Preconditions:</strong> System is up and running, criminal profiles have been added to the database, camera is connected and accessible</p>
+                <p><strong>Main Flow:</strong></p>
+                <ol>
+                    <li>User navigates to detection page</li>
+                    <li>System activates camera</li>
+                    <li>System processes video frames in real-time</li>
+                    <li>System detects faces in the camera feed</li>
+                    <li>System compares detected faces with criminal database</li>
+                    <li>When a match is found, system displays criminal details</li>
+                    <li>System logs the detection in history</li>
+                </ol>
+                <p><strong>Alternative Flows:</strong></p>
+                <ul>
+                    <li>If no face is detected, system continues monitoring</li>
+                    <li>If face is detected but no match is found, system displays "Criminal not found in records"</li>
+                </ul>
+                <p><strong>Postconditions:</strong> Detection is logged, criminal profile is marked as present if found</p>
+            </div>
+        </section>
+        
+        <section id="ui-design">
+            <h2>7. User Interface Design</h2>
+            <h3>7.1 UI Design Philosophy</h3>
+            <p>The UI design of HOLMES follows modern web design principles with a focus on usability, accessibility, and aesthetic appeal. Key design features include:</p>
+            <ul>
+                <li>Clean, minimalist interface with clear visual hierarchy</li>
+                <li>Responsive design that adapts to different screen sizes</li>
+                <li>Dark and light mode support for different working environments</li>
+                <li>Consistent color scheme based on indigo/purple palette</li>
+                <li>Intuitive navigation with clear labeling</li>
+                <li>Micro-interactions and animations for better user feedback</li>
+                <li>Accessible design following WCAG guidelines</li>
+            </ul>
+            
+            <h3>7.2 UI Screenshots</h3>
+            <div style="text-align: center;">
+                <h4>Home Page (Dark Mode)</h4>
+                <img class="screenshot" src="Screenshots/homepage.jpg" alt="HOLMES Home Page Dark Mode">
+                
+                <h4>Criminal Profiles Page</h4>
+                <img class="screenshot" src="Screenshots/criminal profiles.jpg" alt="Criminal Profiles Page">
+                
+                <h4>Detection Page</h4>
+                <img class="screenshot" src="Screenshots/criminal identified.jpg" alt="Detection Page">
+                
+                <h4>Criminal Profile Form</h4>
+                <img class="screenshot" src="Screenshots/add new criminal.jpg" alt="Criminal Profile Form">
+            </div>
+            
+            <h3>7.3 Dark Mode Implementation</h3>
+            <p>Dark mode is implemented using Tailwind CSS's dark mode feature with a class-based approach. The system remembers user preference using localStorage and applies the appropriate theme on page load.</p>
+            
+            <div class="info-box">
+                <p>The UI implements a theme toggle button that switches between light and dark modes, saving the user's preference for future visits. This is particularly useful for security personnel working in low-light environments or during night shifts.</p>
+            </div>
+        </section>
+        
+        <section id="usp">
+            <h2>8. Unique Selling Points (USPs)</h2>
+            <div class="tech-stack">
+                <div class="tech-item"><span>1</span> Real-time Face Recognition</div>
+                <div class="tech-item"><span>2</span> Modern UI/UX with Dark Mode</div>
+                <div class="tech-item"><span>3</span> Comprehensive Criminal Database</div>
+                <div class="tech-item"><span>4</span> Complete Audit Trail</div>
+                <div class="tech-item"><span>5</span> Accessible Interface</div>
+                <div class="tech-item"><span>6</span> Lightweight Architecture</div>
+            </div>
+            
+            <h3>8.1 Real-time Recognition</h3>
+            <p>HOLMES offers instantaneous criminal identification using standard webcams, without requiring specialized hardware. The system processes video frames in real-time and can identify individuals within seconds of them appearing in the camera feed.</p>
+            
+            <h3>8.2 Modern UI/UX</h3>
+            <p>Unlike many security systems with outdated interfaces, HOLMES features a modern, responsive UI with dark/light mode support. The interface is designed to be intuitive and easy to use, reducing the learning curve for new users.</p>
+            
+            <h3>8.3 Comprehensive Database</h3>
+            <p>The system maintains detailed criminal profiles with images, personal information, and criminal history. This comprehensive database makes it an invaluable tool for law enforcement agencies.</p>
+            
+            <h3>8.4 Complete Audit Trail</h3>
+            <p>HOLMES automatically logs all detection events, creating a complete audit trail for compliance and investigation purposes. This history can be reviewed and managed through the user interface.</p>
+        </section>
+        
+        <section id="scope">
+            <h2>9. Project Scope and Applications</h2>
+            <h3>9.1 Current Applications</h3>
+            <ul>
+                <li><strong>Law Enforcement</strong>: Police stations, investigation departments</li>
+                <li><strong>Border Control</strong>: Immigration checkpoints, customs</li>
+                <li><strong>Prison Management</strong>: Entry/exit monitoring, visitor screening</li>
+                <li><strong>Counter-terrorism</strong>: Monitoring of high-risk areas</li>
+                <li><strong>Public Event Security</strong>: Screening attendees at large gatherings</li>
+            </ul>
+            
+            <h3>9.2 Future Scope</h3>
+            <p>The HOLMES platform has significant potential for future expansion:</p>
+            <ul>
+                <li><strong>Mobile Integration</strong>: Development of mobile apps for field officers</li>
+                <li><strong>Cloud Deployment</strong>: Migration to cloud infrastructure for better scalability</li>
+                <li><strong>API Development</strong>: Creating APIs for third-party integrations</li>
+                <li><strong>Multi-biometric Authentication</strong>: Integration with other biometric systems</li>
+                <li><strong>Advanced Analytics</strong>: Implementing statistics and trend analysis</li>
+                <li><strong>Batch Processing</strong>: Adding capability to process recorded surveillance footage</li>
+            </ul>
+            
+            <div class="info-box">
+                <p><strong>Market Potential</strong></p>
+                <p>The global facial recognition market is projected to grow from $3.8 billion in 2020 to $8.5 billion by 2025, at a CAGR of 17.2%. Law enforcement applications constitute approximately 30% of this market, indicating significant growth potential for systems like HOLMES.</p>
+            </div>
+        </section>
+        
+        <section id="references">
+            <h2>10. References</h2>
+            <ol>
+                <li>Django Documentation. <a href="https://docs.djangoproject.com/">https://docs.djangoproject.com/</a></li>
+                <li>face_recognition API. <a href="https://github.com/ageitgey/face_recognition">https://github.com/ageitgey/face_recognition</a></li>
+                <li>OpenCV Documentation. <a href="https://docs.opencv.org/">https://docs.opencv.org/</a></li>
+                <li>Tailwind CSS Documentation. <a href="https://tailwindcss.com/docs">https://tailwindcss.com/docs</a></li>
+                <li>Kazemi, V., & Sullivan, J. (2014). One millisecond face alignment with an ensemble of regression trees. In Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition (pp. 1867-1874).</li>
+                <li>King, D. E. (2009). Dlib-ml: A machine learning toolkit. Journal of Machine Learning Research, 10, 1755-1758.</li>
+                <li>Schroff, F., Kalenichenko, D., & Philbin, J. (2015). FaceNet: A unified embedding for face recognition and clustering. In Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition (pp. 815-823).</li>
+                <li>WCAG 2.1 Accessibility Guidelines. <a href="https://www.w3.org/TR/WCAG21/">https://www.w3.org/TR/WCAG21/</a></li>
+            </ol>
+        </section>
+    </main>
+    
+    <footer>
+        <div class="container">
+            <p>HOLMES - Criminal Detection Platform © 2024</p>
+            <p>A cutting-edge facial recognition system for law enforcement and security applications</p>
+        </div>
+    </footer>
+</body>
+</html>

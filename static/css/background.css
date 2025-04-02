@@ -1,0 +1,7 @@
+/* This CSS is no longer needed as we're using Tailwind's built-in background classes,
+   but we're keeping this file to avoid breaking any existing references */
+
+body {
+    /* The old gradient is commented out and replaced by Tailwind's dark/light mode classes */
+    /* background: -webkit-linear-gradient(left, #0f0f12, #b8c2c5); */
+}
