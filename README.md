@@ -82,10 +82,10 @@ Use your camera to scan and identify individuals in real-time.
 ## Screenshots
 
 ### Dark Mode
-![Dark Mode](Website_Screenshots/dark_mode.png)
+![Dark Mode](Screenshots/homepage.jpg)
 
 ### Light Mode
-![Light Mode](Website_Screenshots/light_mode.png)
+![Light Mode](Screenshots/)
 
 ### Criminal Profiles
 ![Profiles](Website_Screenshots/profiles.png)
