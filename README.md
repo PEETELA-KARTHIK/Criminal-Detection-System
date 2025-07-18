@@ -86,13 +86,13 @@ Demo:https://photos.app.goo.gl/GG41JhxycK9x7kWf9
 ![Dark Mode](Screenshots/homepage.jpg)
 
 ### add new criminal
-![add new criminal](Screenshots/new criminal.jpg)
+![add new criminal](Screenshots/new_criminal.jpg)
 
 ### Criminal Profiles
-![Profiles](Screenshots/criminal_profiles.png)
+![Profiles](Screenshots/criminal_profiles.jpg)
 
 ### Criminal Details
-![Details](Screenshots/criminal_identified.png)
+![Details](Screenshots/criminal_identified.jpg)
 
 ## Contributing
 
